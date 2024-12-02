@@ -22,22 +22,19 @@ let is_empty str =
 let filter_empty_lines lst =
   List.filter (fun x -> x != "");;
 
-let trim lst = 
-  List.map String.trim;;
-
 let sort_asc lst =
-  List.stable_sort (fun a b -> if a >= b then 1 else 0);;
+  List.stable_sort (fun a b -> if a >= b then 1 else 0) lst;;
 
 let file_content = read_lines input_file;;
 let file_content_plitted = List.map (String.split_on_char ' ') (file_content);;
-let left = List.stable_sort (fun a b -> if a >= b then 1 else 0) (
+let left = sort_asc (
   List.map (int_of_string) (
     List.filter_map (is_empty) (
       List.map (String.trim) (List.map List.hd (file_content_plitted))
     )
   )
 );;
-let right = List.stable_sort (fun a b -> if a >= b then 1 else 0) (
+let right = sort_asc (
   List.map (int_of_string) (
     List.filter_map (is_empty) (
       List.map List.hd (List.map List.rev (file_content_plitted))
