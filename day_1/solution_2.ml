@@ -19,9 +19,6 @@ let is_empty str =
   | "" -> None
   | x -> Some(x)
 
-let filter_empty_lines lst =
-  List.filter (fun x -> x != "");;
-
 let sort_asc lst =
   List.stable_sort (fun a b -> if a >= b then 1 else 0) lst;;
 
@@ -47,6 +44,5 @@ let rec count_score lft rgt =
   | [] -> []
   | h::tflt -> List.length (List.filter (fun re -> re = h) rgt) * h:: count_score tflt rgt;;
 
-let result = List.fold_left (+) 0 (count_score left right);;
-Printf.printf "result_2: %d \n" result;;
+let result () = List.fold_left (+) 0 (count_score left right);;
 
