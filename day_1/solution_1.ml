@@ -19,15 +19,6 @@ let is_empty str =
   | "" -> None
   | x -> Some(x)
 
-let filter_empty_lines lst =
-  List.filter (fun x -> x != "");;
-
-let trim lst = 
-  List.map String.trim;;
-
-let sort_asc lst =
-  List.stable_sort (fun a b -> if a >= b then 1 else 0);;
-
 let file_content = read_lines input_file;;
 let file_content_plitted = List.map (String.split_on_char ' ') (file_content);;
 let left = List.stable_sort (fun a b -> if a >= b then 1 else 0) (
@@ -51,6 +42,5 @@ let rec count_dst lft rgt =
   | [], _ -> []
   | hlft :: tlft, hrgt :: trgt -> abs (hlft - hrgt) :: count_dst tlft trgt;;
 
-let result = List.fold_left (+) 0 (count_dst left right);;
-Printf.printf "result_1: %d \n" result;;
+let result () = List.fold_left (+) 0 (count_dst left right);;
 

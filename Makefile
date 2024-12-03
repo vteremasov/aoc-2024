@@ -1,2 +1,5 @@
 build:
-	opam exec -- dune build ./day_1/solution_1.ml
+	dune build
+
+run:
+	dune exec ./bin/main.exe "day$(day)"

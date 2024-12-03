@@ -19,9 +19,6 @@ let is_empty str =
   | "" -> None
   | x -> Some(x)
 
-let filter_empty_lines lst =
-  List.filter (fun x -> x != "");;
-
 let sort_asc lst =
   List.stable_sort (fun a b -> if a >= b then 1 else 0) lst;;
 
@@ -58,7 +55,5 @@ let is_safe_2 lst =
   in
   check [] lst;;
 
-let result = List.fold_left (fun acc el -> if is_safe_2 el then acc + 1 else acc) 0 file_content_parsed;;
-
-Printf.printf "result_2: %d" result;;
+let result () = List.fold_left (fun acc el -> if is_safe_2 el then acc + 1 else acc) 0 file_content_parsed;;
 
