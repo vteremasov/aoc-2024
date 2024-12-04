@@ -7,18 +7,16 @@
 (source
  (github username/reponame))
 
-(authors "Author Name <author@example.com>")
+(authors "vteremasov <>")
 
-(maintainers "Maintainer Name <maintainer@example.com>")
+(maintainers "vteremasov <>")
 
 (license LICENSE)
 
-(documentation https://url/to/documentation)
-
 (package
  (name aoc_2024)
- (synopsis "A short synopsis")
- (description "A longer description")
+ (synopsis "AoC 2024")
+ (description "")
  (depends ocaml)
  (tags
   ("add topics" "to describe" your project)))
