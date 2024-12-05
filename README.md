@@ -3,19 +3,19 @@
 This is my try to solve AoC in OCaml.
 
 
-##### How to run: 
+#### How to run: 
 
-###### Install
+##### Install
 
 First, you need to install and set up OCaml dev env. Look at official doc: https://ocaml.org/docs/installing-ocaml
 
-###### Build
+##### Build
 
 ```sh
 make build
 ```
 
-###### Run
+##### Run
 
 ```sh
 make run day=3
