@@ -22,7 +22,11 @@ let () =
     | "day6" -> 
         Printf.printf " - Solution 1: %d\n" (Day6.Solution_1.result());
         Printf.printf " - Solution 2: %d\n" (Day6.Solution_2.result());
+    | "day7" -> 
+        Printf.printf " - Solution 1: %d\n" (Day7.Solution_1.result());
+        Printf.printf " - Solution 2: %d\n" (Day7.Solution_2.result());
 
+ 
     | _ -> Printf.printf "Error: Day not found \n"
   )
   | _ -> Printf.printf "Error: Invalid argumentes. Usage: command [:specify day:] \n"
