@@ -11,7 +11,7 @@ let rec comb lst =
   | f::s::rest -> comb (f+s :: rest) @ comb (f*s :: rest)
 ;;
 
-let prepare f =
+let get_sum f =
   In_channel.with_open_bin f In_channel.input_all
   |> String.split_on_char '\n'
   |> List.filter is_empty
@@ -24,5 +24,5 @@ let prepare f =
   |> List.fold_left (+) 0
 ;;
 
-let result () = prepare file;
+let result () = get_sum file;
 
