@@ -15,3 +15,15 @@ let print_lst_str_rep _ lst (x, y) =
 
 let nop e = e;;
 
+let rec add_uniq_v2 lst (x, y) =
+  match lst with
+  | [] -> [(x, y)]
+  | (xb, yb)::rest -> if xb = x && yb = y then ((xb, yb) :: rest) else ((xb, yb) :: add_uniq_v2 rest (x, y))
+;;
+
+let is_end map (x, y) =
+  x < 0 || y < 0 || List.length map <= y || String.length (List.hd map) <= x
+;;
+
+let char_to_int c = int_of_char c - int_of_char '0';;
+
