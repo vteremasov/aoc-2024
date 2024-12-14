@@ -27,3 +27,10 @@ let is_end map (x, y) =
 
 let char_to_int c = int_of_char c - int_of_char '0';;
 
+let splitrim chr str =
+  String.split_on_char chr str
+  |> List.map String.trim
+  |> List.filter (fun s -> (String.length s) > 0)
+;;
+
+
