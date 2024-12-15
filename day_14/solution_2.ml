@@ -94,7 +94,7 @@ let find pats str =
   with Not_found -> false
 ;;
 
-let get_tree =
+let get_tree () =
   let tree = [
       Str.regexp_string "....#....";
       Str.regexp_string "...###...";
@@ -107,5 +107,5 @@ let get_tree =
       |> unwrap
 ;;
 
-let result () = get_tree + 1;;
+let result () = get_tree () + 1;;
 
