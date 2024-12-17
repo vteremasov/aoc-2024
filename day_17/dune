@@ -1,0 +1,3 @@
+(library
+  (name day17)
+  (libraries lib str unix))
