@@ -162,7 +162,7 @@ let rec add_uniq lst tile =
   | hd::rest -> if hd.pos.x = tile.pos.x && hd.pos.y = tile.pos.y then hd::rest else hd::add_uniq rest tile
 ;;
 
-let sp : tile array array -> ((tile * char), (int * char * (int * char * tile) list)) Hashtbl.t -> int = fun map hash ->
+let count_path : tile array array -> ((tile * char), (int * char * (int * char * tile) list)) Hashtbl.t -> int = fun map hash ->
   let ends = Hashtbl.fold (fun (tile, _) v acc -> if tile.chr = 'E' then v::acc else acc) hash [] in
   let result = ref [get_tile map 'E' false] in
   let min, _ = get_min ends in
@@ -179,12 +179,12 @@ let sp : tile array array -> ((tile * char), (int * char * (int * char * tile) l
   List.length !result
 ;;
 
-let get_short_dist f =
+let get_places f =
   In_channel.with_open_bin f In_channel.input_all
   |> of_map
   |> fun map -> dijkstra map (get_tile map 'S' true) '>'
-  |> sp map
+  |> count_path map
 ;;
 
-let result () = get_short_dist file;;
+let result () = get_places file;;
 
