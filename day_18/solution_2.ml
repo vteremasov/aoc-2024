@@ -114,17 +114,22 @@ let draw = fun map ->
 ;;
 
 let get_blocking_pair width height bts pairs =
-  let bts_count = ref bts              in
   let start  = {x = 0; y = 0}          in
   let exit   = {x = width; y = height} in
-  let found = ref true in
-  while !found do
-    incr bts_count;
-    let map2d = build_map width height (List.of_seq (Seq.take !bts_count pairs)) in
-    found := (dijkstra map2d start |> fun all -> Hashtbl.mem all exit);
+  let arr_pairs = Array.of_seq pairs in
+  let left = ref bts in
+  let right = ref (Array.length arr_pairs - 1) in
+  while !left < !right do
+    let mid = (!left + !right) / 2 in
+    let map2d = build_map width height (List.of_seq (Seq.take (mid + 1) pairs)) in
+    let found = (dijkstra map2d start |> fun all -> Hashtbl.mem all exit) in
+    if found then
+      left := mid + 1
+    else
+      right := mid
   done;
 
-  let block = List.nth (List.of_seq pairs) (!bts_count - 1) in
+  let block = arr_pairs.(!left) in
 
   (string_of_int block.x) ^ "," ^ (string_of_int block.y)
 ;;
