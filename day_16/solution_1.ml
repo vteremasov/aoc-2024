@@ -1,4 +1,4 @@
-let file = "./day_16/input/input";;
+let file = "./day_16/input/exampleT";;
 
 type point = {
   x : int;
@@ -110,33 +110,32 @@ let dijkstra map2d source direction =
   let distances = Hashtbl.create (Array.length map2d) in
   let visited = Hashtbl.create (Array.length map2d) in
   let rec loop queue =
-    (* draw map2d distances; *)
     match queue with
     | [] -> ()
     | _ ->
         let (dist, curr_dir, current), rest_queue = priority queue in
-        if Hashtbl.mem visited current then loop rest_queue
+        if Hashtbl.mem visited (curr_dir, current) then loop rest_queue
         else (
-          Hashtbl.add visited current true;
+          Hashtbl.add visited (curr_dir, current) true;
           let neighbors = get_neighbors map2d current.pos curr_dir in
           let new_queue =
             List.fold_left
               (fun acc (weight, dir, neighbor) ->
                 let new_dist = dist + weight in
                 let (old_dist, _) =
-                  if Hashtbl.mem distances neighbor then
-                    Hashtbl.find distances neighbor
+                  if Hashtbl.mem distances (dir, neighbor) then
+                    Hashtbl.find distances (dir, neighbor)
                   else (max_int, dir)
                 in
                 if new_dist < old_dist then (
-                  Hashtbl.replace distances neighbor (new_dist, dir);
+                  Hashtbl.replace distances (dir, neighbor) (new_dist, dir);
                   (new_dist, dir, neighbor) :: acc
                 ) else acc)
               rest_queue neighbors
           in
           loop new_queue)
   in
-  Hashtbl.add distances source (0, direction);
+  Hashtbl.add distances (direction, source) (0, direction);
   loop [(0, direction, source)];
   distances
 ;;
@@ -145,7 +144,7 @@ let get_short_dist f =
   In_channel.with_open_bin f In_channel.input_all
   |> of_map
   |> fun map -> dijkstra map (get_tile map 'S' true) '>'
-  |> fun t -> (fst(Hashtbl.find t (get_tile map 'E' false)))
+  |> fun t -> (fst(Hashtbl.find t ('>', get_tile map 'E' false)))
 ;;
 
 let result () = get_short_dist file;;
