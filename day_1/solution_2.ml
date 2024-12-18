@@ -1,4 +1,4 @@
-let input_file = "./day_1/input/input2.txt"
+let input_file = "./day_1/input/example.txt"
 
 let rec print_str_list lst =
   match lst with
@@ -22,19 +22,17 @@ let is_empty str =
 let sort_asc lst =
   List.stable_sort (fun a b -> if a >= b then 1 else 0) lst;;
 
-let file_content = read_lines input_file;;
-let file_content_plitted = List.map (String.split_on_char ' ') (file_content);;
 let left = sort_asc (
   List.map (int_of_string) (
     List.filter_map (is_empty) (
-      List.map (String.trim) (List.map List.hd (file_content_plitted))
+      List.map (String.trim) (List.map List.hd (List.map (String.split_on_char ' ') (read_lines input_file)))
     )
   )
 );;
 let right = sort_asc (
   List.map (int_of_string) (
     List.filter_map (is_empty) (
-      List.map List.hd (List.map List.rev (file_content_plitted))
+      List.map List.hd (List.map List.rev (List.map (String.split_on_char ' ') (read_lines input_file)))
     )
   )
 );;

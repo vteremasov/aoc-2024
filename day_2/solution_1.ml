@@ -1,4 +1,4 @@
-let input_file = "./day_2/input/input1.txt"
+let input_file = "./day_2/input/example.txt"
 
 let rec print_str_list lst =
   match lst with

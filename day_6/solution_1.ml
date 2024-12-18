@@ -1,4 +1,4 @@
-let file = "./day_6/input/input.txt";;
+let file = "./day_6/input/example.txt";;
 
 let is_end lst (x, y) =
   (x < 0 || y < 0) || (List.length lst) <= y || String.length (List.hd lst) <= x

@@ -1,4 +1,4 @@
-let file = "./day_12/input/input";;
+let file = "./day_12/input/example";;
 
 let prepare f =
   In_channel.with_open_bin f In_channel.input_all

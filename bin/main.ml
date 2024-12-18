@@ -55,6 +55,9 @@ let () =
     | "day17" -> 
         Printf.printf " - Solution 1: %s\n" (Day17.Solution_1.result());
         Printf.printf " - Solution 2: %d\n" (Day17.Solution_2.result());
+    | "day18" -> 
+        Printf.printf " - Solution 1: %d\n" (Day18.Solution_1.result());
+        Printf.printf " - Solution 2: %s\n" (Day18.Solution_2.result());
 
     | _ -> Printf.printf "Error: Day not found \n"
   )
